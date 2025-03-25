@@ -68,29 +68,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Contact Form Handling
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('form-message');
-    
-    if(contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            
-            fetch(contactForm.getAttribute('action'), {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.success) {
-                    formMessage.innerHTML = '<div class="success-message">Message sent successfully!</div>';
-                    contactForm.reset();
-                } else {
-                    formMessage.innerHTML = '<div class="error-message">Something went wrong. Please try again.</div>';
-                }
-            })
-            .catch(error => {
-                formMessage.innerHTML = '<div class="error-message">Something went wrong. Please try again.</div>';
-            });
-        });
-    }
 });
