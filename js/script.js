@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Typing Effect
     const typedTextSpan = document.querySelector(".typed-text");
-    const textArray = ["Web Developer", "Designer", "Programmer", "Freelancer"];
+    const textArray = ["Data science", "Big Data", "AI"];
     let textArrayIndex = 0;
     let charIndex = 0;
     
