@@ -97,3 +97,62 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+    // Back to Top Button
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+    
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Improved mobile navigation
+    const mobileNav = document.querySelector('nav ul');
+    const body = document.body;
+    
+    hamburger.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+    });
+    
+    // Close mobile nav when clicking on a link
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            hamburger.classList.remove('active');
+            body.style.overflow = 'auto';
+        });
+    });
+    
+    // Add fade-in animation to sections on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
