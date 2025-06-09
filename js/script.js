@@ -66,6 +66,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Contact Form Handling
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('form-message');
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("form-message");
+
+    // PFA Internship Pop-up
+    const pfaPopup = document.getElementById("pfa-popup");
+    const pfaPopupClose = document.querySelector(".pfa-popup-close");
+    
+    // Show popup on page load
+    setTimeout(() => {
+        pfaPopup.classList.remove("hidden");
+    }, 1000);
+    
+    // Close popup when clicking the close button
+    pfaPopupClose.addEventListener("click", function() {
+        pfaPopup.classList.add("hidden");
+    });
+    
+    // Close popup when clicking outside of it
+    window.addEventListener("click", function(event) {
+        if (event.target === pfaPopup) {
+            pfaPopup.classList.add("hidden");
+        }
+    });
+    
+    // Close popup when clicking the contact button
+    const pfaContactBtn = document.querySelector(".pfa-popup-text .btn");
+    pfaContactBtn.addEventListener("click", function() {
+        pfaPopup.classList.add("hidden");
+    });
 });
+
