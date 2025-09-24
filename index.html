@@ -1,4 +1,107 @@
-<!DOCTYPE html>
+<script>
+            // YouTube Banner functionality
+            function closeBanner() {
+                const banner = document.getElementById('youtube-banner');
+                banner.style.transform = 'translateY(-100%)';
+                banner.style.opacity = '0';
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                }, 300);
+            }
+
+            // Auto-hide banner after 10 seconds (optional)
+            setTimeout(() => {
+                const banner = document.getElementById('youtube-banner');
+                if (banner && banner.style.display !== 'none') {
+                    closeBanner();
+                }
+            }, 10000);
+
+            // Skills Filter Functionality
+            function initSkillsFilter() {
+                const filterBtns = document.querySelectorAll('.skills-filter-btn');
+                const skillCategories = document.querySelectorAll('.skills-category');
+
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Remove active class from all buttons
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        // Add active class to clicked button
+                        btn.classList.add('active');
+
+                        const filter = btn.getAttribute('data-filter');
+
+                        skillCategories.forEach(category => {
+                            const categoryType = category.getAttribute('data-category');
+                            
+                            if (filter === 'all') {
+                                category.style.display = 'block';
+                                category.style.animation = 'fadeIn 0.3s ease';
+                            } else if (categoryType === filter) {
+                                category.style.display = 'block';
+                                category.style.animation = 'fadeIn 0.3s ease';
+                            } else {
+                                category.style.display = 'none';
+                            }
+                        });
+
+                        // Re-trigger skill animations for visible categories
+                        setTimeout(animateVisibleSkills, 100);
+                    });
+                });
+            }
+
+            // Animate only visible skills
+            function animateVisibleSkills() {
+                const visibleSkillBars = document.querySelectorAll('.skills-category[style*="display: block"] .skill-level, .skills-category:not([style*="display: none"]) .skill-level');
+                visibleSkillBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            }
+
+            // Skill animation on scroll
+            function animateSkills() {
+                const skillBars = document.querySelectorAll('.skill-level');
+                skillBars.forEach(bar => {
+                    const rect = bar.getBoundingClientRect();
+                    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+                    
+                    if (isVisible) {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    }
+                });
+            }
+
+            // Add CSS for fade animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                
+                .skills-category {
+                    transition: all 0.3s ease;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Initialize everything when page loads
+            document.addEventListener('DOMContentLoaded', () => {
+                initSkillsFilter();
+                setTimeout(animateSkills, 500);
+            });
+
+            // Trigger skill animation on scroll
+            window.addEventListener('scroll', animateSkills);<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,13 +117,12 @@
             color: white;
             padding: 12px 0;
             text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: relative;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             animation: slideDown 0.5s ease-out;
+            display: block;
         }
         
         .youtube-banner a {
@@ -58,13 +160,36 @@
         }
         
         @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
-        /* Adjust body padding when banner is visible */
-        body.banner-visible {
-            padding-top: 50px;
+        /* Skills Filter Styles */
+        .skills-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .skills-filter-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color, #007bff);
+            color: var(--primary-color, #007bff);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .skills-filter-btn:hover,
+        .skills-filter-btn.active {
+            background: var(--primary-color, #007bff);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,123,255,0.3);
         }
         
         /* Skills Section Improvements */
@@ -126,10 +251,10 @@
         }
     </style>
 </head>
-<body class="banner-visible">
+<body>
     <!-- YouTube Support Banner -->
     <div id="youtube-banner" class="youtube-banner">
-        <a href="https://youtube.com/your-channel-here" target="_blank">
+        <a href="https://youtube.com/@your-channel-here" target="_blank">
             <i class="fab fa-youtube"></i>
             Support us on YouTube - Subscribe for more content!
         </a>
@@ -297,9 +422,22 @@
                 <div class="underline"></div>
             </div>
             
+            <!-- Skills Filter Buttons -->
+            <div class="skills-filter">
+                <button class="skills-filter-btn active" data-filter="all">All</button>
+                <button class="skills-filter-btn" data-filter="programming">Programming</button>
+                <button class="skills-filter-btn" data-filter="data-science">Data Science</button>
+                <button class="skills-filter-btn" data-filter="ml-ai">ML & AI</button>
+                <button class="skills-filter-btn" data-filter="databases">Databases</button>
+                <button class="skills-filter-btn" data-filter="web">Web Tech</button>
+                <button class="skills-filter-btn" data-filter="visualization">Visualization</button>
+                <button class="skills-filter-btn" data-filter="devops">DevOps</button>
+                <button class="skills-filter-btn" data-filter="cloud">Cloud & Platforms</button>
+            </div>
+            
             <div class="skills-categories">
                 <!-- Programming Languages -->
-                <div class="skills-category">
+                <div class="skills-category" data-category="programming">
                     <h4><i class="fas fa-code category-icon"></i>Programming Languages</h4>
                     <div class="skill-item">
                         <div class="skill-name">Python</div>
@@ -316,10 +454,20 @@
                         <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
                         <div class="skill-percentage">30%</div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 25%"></div></div>
+                        <div class="skill-percentage">25%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Java</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 20%"></div></div>
+                        <div class="skill-percentage">20%</div>
+                    </div>
                 </div>
 
                 <!-- Data Science & Analytics -->
-                <div class="skills-category">
+                <div class="skills-category" data-category="data-science">
                     <h4><i class="fas fa-chart-line category-icon"></i>Data Science & Analytics</h4>
                     <div class="skill-item">
                         <div class="skill-name">Pandas</div>
@@ -332,19 +480,24 @@
                         <div class="skill-percentage">50%</div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">Matplotlib</div>
-                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
-                        <div class="skill-percentage">50%</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Seaborn</div>
+                        <div class="skill-name">Scipy</div>
                         <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
                         <div class="skill-percentage">40%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Scikit-learn</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 45%"></div></div>
+                        <div class="skill-percentage">45%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Statistics</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 55%"></div></div>
+                        <div class="skill-percentage">55%</div>
                     </div>
                 </div>
 
                 <!-- Machine Learning & AI -->
-                <div class="skills-category">
+                <div class="skills-category" data-category="ml-ai">
                     <h4><i class="fas fa-brain category-icon"></i>Machine Learning & AI</h4>
                     <div class="skill-item">
                         <div class="skill-name">TensorFlow</div>
@@ -361,10 +514,25 @@
                         <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
                         <div class="skill-percentage">40%</div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-name">OpenCV</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 35%"></div></div>
+                        <div class="skill-percentage">35%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">YOLO</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
+                        <div class="skill-percentage">30%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Natural Language Processing</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 25%"></div></div>
+                        <div class="skill-percentage">25%</div>
+                    </div>
                 </div>
 
                 <!-- Databases -->
-                <div class="skills-category">
+                <div class="skills-category" data-category="databases">
                     <h4><i class="fas fa-database category-icon"></i>Databases</h4>
                     <div class="skill-item">
                         <div class="skill-name">MySQL</div>
@@ -381,10 +549,15 @@
                         <div class="skill-bar"><div class="skill-level" style="width: 20%"></div></div>
                         <div class="skill-percentage">20%</div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-name">SQLite</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
+                        <div class="skill-percentage">40%</div>
+                    </div>
                 </div>
 
                 <!-- Web Technologies -->
-                <div class="skills-category">
+                <div class="skills-category" data-category="web">
                     <h4><i class="fas fa-globe category-icon"></i>Web Technologies</h4>
                     <div class="skill-item">
                         <div class="skill-name">BeautifulSoup</div>
@@ -396,20 +569,50 @@
                         <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
                         <div class="skill-percentage">40%</div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Streamlit</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
+                        <div class="skill-percentage">50%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Flask</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 20%"></div></div>
+                        <div class="skill-percentage">20%</div>
+                    </div>
                 </div>
 
                 <!-- Data Visualization -->
-                <div class="skills-category">
+                <div class="skills-category" data-category="visualization">
                     <h4><i class="fas fa-chart-bar category-icon"></i>Data Visualization</h4>
                     <div class="skill-item">
                         <div class="skill-name">Power BI</div>
                         <div class="skill-bar"><div class="skill-level" style="width: 70%"></div></div>
                         <div class="skill-percentage">70%</div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Matplotlib</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
+                        <div class="skill-percentage">50%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Seaborn</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
+                        <div class="skill-percentage">40%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Plotly</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 35%"></div></div>
+                        <div class="skill-percentage">35%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Tableau</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 15%"></div></div>
+                        <div class="skill-percentage">15%</div>
+                    </div>
                 </div>
 
                 <!-- DevOps & Tools -->
-                <div class="skills-category">
+                <div class="skills-category" data-category="devops">
                     <h4><i class="fas fa-tools category-icon"></i>DevOps & Tools</h4>
                     <div class="skill-item">
                         <div class="skill-name">Git</div>
@@ -431,11 +634,21 @@
                         <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
                         <div class="skill-percentage">30%</div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Jupyter Notebook</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 65%"></div></div>
+                        <div class="skill-percentage">65%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">VS Code</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 60%"></div></div>
+                        <div class="skill-percentage">60%</div>
+                    </div>
                 </div>
 
-                <!-- Platforms -->
-                <div class="skills-category">
-                    <h4><i class="fas fa-cloud category-icon"></i>Platforms</h4>
+                <!-- Cloud & Platforms -->
+                <div class="skills-category" data-category="cloud">
+                    <h4><i class="fas fa-cloud category-icon"></i>Cloud & Platforms</h4>
                     <div class="skill-item">
                         <div class="skill-name">Roboflow</div>
                         <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
@@ -445,6 +658,21 @@
                         <div class="skill-name">Kaggle</div>
                         <div class="skill-bar"><div class="skill-level" style="width: 60%"></div></div>
                         <div class="skill-percentage">60%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Google Colab</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 70%"></div></div>
+                        <div class="skill-percentage">70%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">AWS (Basic)</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 15%"></div></div>
+                        <div class="skill-percentage">15%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Azure (Basic)</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 10%"></div></div>
+                        <div class="skill-percentage">10%</div>
                     </div>
                 </div>
             </div>
