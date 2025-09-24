@@ -321,24 +321,90 @@ nav a.active {
 }
 
 .skill-bar {
-    background: #e9ecef;
-    height: 8px;
-    border-radius: 4px;
+    background: var(--gray-200);
+    height: 12px;
+    border-radius: var(--radius-xl);
     overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .skill-level {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), #0056b3);
-    border-radius: 4px;
-    transition: width 0.8s ease;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-xl);
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     width: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-level::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+.skill-level::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .skill-percentage {
-    font-size: 0.85rem;
-    color: #666;
-    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: var(--spacing-sm);
+    text-align: right;
+    transition: all 0.3s ease;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+    min-height: 1.2em;
+    line-height: 1.2;
+}
+
+.skill-item:hover .skill-percentage {
+    color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.skill-item:hover .skill-level {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+}
+
+.skill-item:hover .skill-bar {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px rgba(37, 99, 235, 0.2);
+}
+
+/* Ensure percentage text is always visible */
+.skill-percentage:empty::after {
+    content: attr(data-percentage);
+}
+
+.skill-percentage[data-percentage] {
+    content: attr(data-percentage);
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
 /* Soft Skills */
@@ -1386,6 +1452,7 @@ footer {
     position: relative;
     transform: scale(0.8);
     transition: transform var(--transition-normal);
+    box-shadow: var(--shadow-xl);
 }
 
 .pfa-popup.show .pfa-popup-content {

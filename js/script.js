@@ -174,12 +174,27 @@ function animateVisibleSkills() {
     
     visibleCategories.forEach(category => {
         const skillBars = category.querySelectorAll('.skill-level');
-        skillBars.forEach(bar => {
-            const targetWidth = bar.style.width;
-            bar.style.width = '0%';
-            setTimeout(() => {
-                bar.style.width = targetWidth;
-            }, 100);
+        skillBars.forEach((bar, index) => {
+            const targetWidth = bar.getAttribute('data-width') || bar.style.width;
+            const targetPercentage = parseInt(targetWidth);
+            
+            // Only animate if not already animated
+            if (!bar.classList.contains('animated')) {
+                bar.style.width = '0%';
+                
+                // Reset and animate the percentage counter
+                const percentageElement = bar.closest('.skill-item').querySelector('.skill-percentage');
+                percentageElement.textContent = '0%';
+                
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                    bar.classList.add('animated');
+                    // Animate counter with staggered delay
+                    setTimeout(() => {
+                        animateCounter(percentageElement, 0, targetPercentage, 1200);
+                    }, index * 100);
+                }, 100);
+            }
         });
     });
 }
@@ -194,11 +209,66 @@ function animateSkills() {
         
         if (isVisible && !bar.classList.contains('animated')) {
             const targetWidth = bar.getAttribute('data-width') || bar.style.width;
+            const targetPercentage = parseInt(targetWidth);
+            
+            // Animate the percentage counter
+            const percentageElement = bar.closest('.skill-item').querySelector('.skill-percentage');
+            animateCounter(percentageElement, 0, targetPercentage, 1500);
+            
+            // Animate the bar
             bar.style.width = '0%';
             setTimeout(() => {
                 bar.style.width = targetWidth;
                 bar.classList.add('animated');
             }, 100);
+        }
+    });
+}
+
+// Animated counter function
+function animateCounter(element, start, end, duration) {
+    if (!element) return;
+    
+    const startTime = performance.now();
+    const isPercentage = element.textContent.includes('%') || true; // Always treat as percentage
+    
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(start + (end - start) * easeOutCubic);
+        
+        element.textContent = current + '%';
+        element.style.opacity = '1'; // Ensure visibility
+        element.style.display = 'block'; // Ensure display
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            // Ensure final value is set correctly
+            element.textContent = end + '%';
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
+
+// Ensure all percentage values are visible
+function ensurePercentagesVisible() {
+    const skillBars = document.querySelectorAll('.skill-level');
+    skillBars.forEach(bar => {
+        const percentageElement = bar.closest('.skill-item').querySelector('.skill-percentage');
+        if (percentageElement) {
+            const targetWidth = bar.getAttribute('data-width') || bar.style.width;
+            const targetPercentage = parseInt(targetWidth);
+            
+            // Ensure the percentage is displayed
+            percentageElement.textContent = targetPercentage + '%';
+            percentageElement.style.opacity = '1';
+            percentageElement.style.display = 'block';
+            percentageElement.style.visibility = 'visible';
         }
     });
 }
@@ -209,7 +279,14 @@ function initSkillBars() {
     skillBars.forEach(bar => {
         const width = bar.style.width;
         bar.setAttribute('data-width', width);
-        bar.style.width = '0%';
+        
+        // Ensure percentage element is visible
+        const percentageElement = bar.closest('.skill-item').querySelector('.skill-percentage');
+        if (percentageElement) {
+            percentageElement.style.opacity = '1';
+            percentageElement.style.display = 'block';
+            percentageElement.style.visibility = 'visible';
+        }
     });
 }
 
@@ -637,7 +714,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger initial skill animation after a delay
     setTimeout(() => {
         animateSkills();
-    }, 500);
+    }, 1000);
+    
+    // Ensure all percentages are visible after a longer delay
+    setTimeout(() => {
+        ensurePercentagesVisible();
+    }, 2000);
     
     console.log('All scripts initialized');
 });
