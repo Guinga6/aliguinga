@@ -3,20 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Professional Portfolio</title>
+    <title>ALY GUINGA</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script defer src="js/script.js"></script>
+    <style>
+        /* YouTube Support Banner Styles */
+        .youtube-banner {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        .youtube-banner a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .youtube-banner a:hover {
+            transform: scale(1.05);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .youtube-banner .close-banner {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 3px;
+            transition: background 0.3s ease;
+        }
+        
+        .youtube-banner .close-banner:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        /* Adjust body padding when banner is visible */
+        body.banner-visible {
+            padding-top: 50px;
+        }
+        
+        /* Skills Section Improvements */
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .skills-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color, #007bff);
+        }
+        
+        .skills-category h4 {
+            color: var(--primary-color, #007bff);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .category-icon {
+            font-size: 1.3rem;
+        }
+        
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #333;
+        }
+        
+        .skill-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color, #007bff), #0056b3);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+        
+        .skill-percentage {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.2rem;
+        }
+    </style>
 </head>
-<body>
+<body class="banner-visible">
+    <!-- YouTube Support Banner -->
+    <div id="youtube-banner" class="youtube-banner">
+        <a href="https://youtube.com/your-channel-here" target="_blank">
+            <i class="fab fa-youtube"></i>
+            Support us on YouTube - Subscribe for more content!
+        </a>
+        <button class="close-banner" onclick="closeBanner()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
     <!-- PFA Internship Pop-up -->
     <div id="pfa-popup" class="pfa-popup">
         <div class="pfa-popup-content">
             <span class="pfa-popup-close">&times;</span>
             <div class="pfa-popup-text">
                 <i class="fas fa-briefcase"></i>
-                <h3>Looking for PFA Internship</h3>
-                <p>I am actively seeking a PFA (Projet de Fin d'Année) internship opportunity for Summer 2025 in Data Science, AI, or related fields.</p>
+                <h3>Looking for PFE Internship</h3>
+                <p>I am actively seeking a PFE (End of Study Project) internship opportunity for 4 to 8 months starting from 10/01/2026 in Data Science, AI, or related fields.</p>
                 <a href="#contact" class="btn primary-btn">Contact Me</a>
             </div>
         </div>
@@ -164,527 +293,560 @@
     <section id="skills" class="skills">
         <div class="container">
             <div class="section-header">
-                <h2>Skills</h2>
+                <h2>Technical Skills</h2>
                 <div class="underline"></div>
             </div>
-            <div class="section-header">
-                <h2>Technical Skills</h2>
-                <div class="skill-item"></div>
-            </div>
-            <div class="skills-content">
+            
+            <div class="skills-categories">
+                <!-- Programming Languages -->
                 <div class="skills-category">
-                    <h5>Programming Languages</h5>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-name">Python</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 60%"></div></div>
-                            <div class="skill-percentage">60%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">R</div>
-                            <div class="skill-bar"><div class="skill-level" style="width:50%"></div></div>
-                            <div class="skill-percentage">50%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">HTML/CSS</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
-                            <div class="skill-percentage">30%</div>
-                        </div>
+                    <h4><i class="fas fa-code category-icon"></i>Programming Languages</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">Python</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 60%"></div></div>
+                        <div class="skill-percentage">60%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">R</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
+                        <div class="skill-percentage">50%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">HTML/CSS</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
+                        <div class="skill-percentage">30%</div>
                     </div>
                 </div>
 
+                <!-- Data Science & Analytics -->
                 <div class="skills-category">
-                    <h5>Data Manipulation Tools</h5>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-name">Pandas</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 60%"></div></div>
-                            <div class="skill-percentage">60%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Numpy</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
-                            <div class="skill-percentage">50%</div>
-                        </div>
+                    <h4><i class="fas fa-chart-line category-icon"></i>Data Science & Analytics</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">Pandas</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 60%"></div></div>
+                        <div class="skill-percentage">60%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Numpy</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
+                        <div class="skill-percentage">50%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Matplotlib</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
+                        <div class="skill-percentage">50%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Seaborn</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
+                        <div class="skill-percentage">40%</div>
                     </div>
                 </div>
 
+                <!-- Machine Learning & AI -->
                 <div class="skills-category">
-                    <h5>Web Scraping Tools</h5>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-name">BeautifulSoup</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
-                            <div class="skill-percentage">40%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Selenium</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
-                            <div class="skill-percentage">40%</div>
-                        </div>
+                    <h4><i class="fas fa-brain category-icon"></i>Machine Learning & AI</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">TensorFlow</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 10%"></div></div>
+                        <div class="skill-percentage">10%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">PyTorch</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 10%"></div></div>
+                        <div class="skill-percentage">10%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Hugging Face</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
+                        <div class="skill-percentage">40%</div>
                     </div>
                 </div>
 
+                <!-- Databases -->
                 <div class="skills-category">
-                    <h5>Deep Learning Tools</h5>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-name">TensorFlow</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 10%"></div></div>
-                            <div class="skill-percentage">10%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">PyTorch</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 10%"></div></div>
-                            <div class="skill-percentage">10%</div>
-                        </div>
-                        
+                    <h4><i class="fas fa-database category-icon"></i>Databases</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">MySQL</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
+                        <div class="skill-percentage">50%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">PostgreSQL</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
+                        <div class="skill-percentage">50%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">MongoDB</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 20%"></div></div>
+                        <div class="skill-percentage">20%</div>
                     </div>
                 </div>
 
+                <!-- Web Technologies -->
                 <div class="skills-category">
-                    <h5>Visualization Tools</h5>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-name">Power BI</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 70%"></div></div>
-                            <div class="skill-percentage">70%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Matplotlib</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
-                            <div class="skill-percentage">50%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Seaborn</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
-                            <div class="skill-percentage">40%</div>
-                        </div>
+                    <h4><i class="fas fa-globe category-icon"></i>Web Technologies</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">BeautifulSoup</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
+                        <div class="skill-percentage">40%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Selenium</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
+                        <div class="skill-percentage">40%</div>
                     </div>
                 </div>
 
+                <!-- Data Visualization -->
                 <div class="skills-category">
-                    <h5>Databases</h5>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-name">MySQL</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
-                            <div class="skill-percentage">50%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">PostgreSQL</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
-                            <div class="skill-percentage">50%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">MongoDB</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 20%"></div></div>
-                            <div class="skill-percentage">20%</div>
-                        </div>
+                    <h4><i class="fas fa-chart-bar category-icon"></i>Data Visualization</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">Power BI</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 70%"></div></div>
+                        <div class="skill-percentage">70%</div>
                     </div>
                 </div>
 
+                <!-- DevOps & Tools -->
                 <div class="skills-category">
-                    <h5>Platforms</h5>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-name">Roboflow</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
-                            <div class="skill-percentage">30%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Hugging Face</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 40%"></div></div>
-                            <div class="skill-percentage">40%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Kaggle</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 60%"></div></div>
-                            <div class="skill-percentage">60%</div>
-                        </div>
+                    <h4><i class="fas fa-tools category-icon"></i>DevOps & Tools</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">Git</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
+                        <div class="skill-percentage">30%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">GitHub</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
+                        <div class="skill-percentage">50%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Docker</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
+                        <div class="skill-percentage">30%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Apache Airflow</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
+                        <div class="skill-percentage">30%</div>
                     </div>
                 </div>
 
+                <!-- Platforms -->
                 <div class="skills-category">
-                    <h5>Other Tools</h5>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-name">Git</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
-                            <div class="skill-percentage">30%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">GitHub</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 50%"></div></div>
-                            <div class="skill-percentage">50%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Docker</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
-                            <div class="skill-percentage">30%</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Apache Airflow</div>
-                            <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
-                            <div class="skill-percentage">30%</div>
-                        </div>
+                    <h4><i class="fas fa-cloud category-icon"></i>Platforms</h4>
+                    <div class="skill-item">
+                        <div class="skill-name">Roboflow</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 30%"></div></div>
+                        <div class="skill-percentage">30%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Kaggle</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 60%"></div></div>
+                        <div class="skill-percentage">60%</div>
                     </div>
                 </div>
             </div>
-                <div class="skills-category">
-                    <div class="section-header">
-                        <h2>Soft Skills</h2>
-                        <div class="underline"></div>
-                    </div>
-                    <div class="soft-skills">
-                        <div class="soft-skill">
-                            <i class="fas fa-comments"></i>
-                            <h4>Communication</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <i class="fas fa-users"></i>
-                            <h4>Teamwork</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <i class="fas fa-lightbulb"></i>
-                            <h4>Problem Solving</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <i class="fas fa-tasks"></i>
-                            <h4>Project Management</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <i class="fas fa-clock"></i>
-                            <h4>Time Management</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <i class="fas fa-chart-line"></i>
-                            <h4>Leadership</h4>
-                        </div>
-                    </div>
+
+            <!-- Soft Skills Section -->
+            <div class="section-header" style="margin-top: 3rem;">
+                <h2>Soft Skills</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="soft-skills">
+                <div class="soft-skill">
+                    <i class="fas fa-comments"></i>
+                    <h4>Communication</h4>
+                </div>
+                <div class="soft-skill">
+                    <i class="fas fa-users"></i>
+                    <h4>Teamwork</h4>
+                </div>
+                <div class="soft-skill">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Problem Solving</h4>
+                </div>
+                <div class="soft-skill">
+                    <i class="fas fa-tasks"></i>
+                    <h4>Project Management</h4>
+                </div>
+                <div class="soft-skill">
+                    <i class="fas fa-clock"></i>
+                    <h4>Time Management</h4>
+                </div>
+                <div class="soft-skill">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Leadership</h4>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
- <!-- Projects Section - Improved with Cards -->
-<section id="projects" class="projects">
-    <div class="container">
-        <div class="section-header">
-            <h2>Projects</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="projects-filter">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="web">Web Development</button>
-            <button class="filter-btn" data-filter="DL">Deep Learning</button>
-            <button class="filter-btn" data-filter="nlp">Chatbot creating</button>
-            <button class="filter-btn" data-filter="BI">Busniss intellegence</button>
-        </div>
-        <div class="projects-grid">
-            <!-- Project Card 1 -->
-            <div class="project-item" data-category="BI">
-                <div class="project-img">
-                    <img src="images/BI project.png" alt="BI Project">
-                    <div class="project-links">
-                        <a href="https://docs.google.com/document/d/1w6zgl5zwLXZFI_3j7LI1vEBQ5VOY3cac/edit?usp=sharing&ouid=114073361788571405118&rtpof=true&sd=true" target="_blank"><i class="fas fa-link"></i></a>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>Bic-share Analysis Project</h3>
-                    <p>This project addresses the problem of converting occasional users into annual subscribers in a bicycle sharing system.</p>
-                    <div class="project-tags">
-                        <span>PowerBI</span>
-                        <span>Word</span>
-                    </div>
-                </div>
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Projects</h2>
+                <div class="underline"></div>
             </div>
-            
-            <!-- Project Card 2 - Transfer Rumour Analysis -->
-            <div class="project-item" data-category="BI">
-                <div class="project-img">
-                    <img src="images/project architecture.png" alt="Transfer Rumour Analysis">
-                    <div class="project-links">
-                        <a href="https://github.com/Guinga6/Transfer-Rumours-Analysis" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>Analysis of Transfer Rumour and Players Performance</h3>
-                    <p>A comprehensive ETL data pipeline project for analyzing transfer rumours and player performances using web scraping, Apache Airflow, Docker, MongoDB Atlas, and Power BI for predictive modeling.</p>
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>Apache Airflow</span>
-                        <span>Docker</span>
-                        <span>MongoDB</span>
-                        <span>Power BI</span>
-                        <span>Web Scraping</span>
-                    </div>
-                </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="DL">Deep Learning</button>
+                <button class="filter-btn" data-filter="nlp">Chatbot creating</button>
+                <button class="filter-btn" data-filter="BI">Busniss intellegence</button>
             </div>
-            
-            <!-- Project Card 3 -->
-            <div class="project-item" data-category="web">
-                <div class="project-img">
-                    <img src="images/olympic_img.png" alt="">
-                    <div class="project-links">
-                        <a href="https://olympic-games-paris-2024.streamlit.app/" target="_blank"><i class="fas fa-link"></i></a>
-                        <a href="https://github.com/Guinga6/Olympic-Games-Paris-2024" target="_blank"><i class="fab fa-github"></i></a>
+            <div class="projects-grid">
+                <!-- Project Card 1 -->
+                <div class="project-item" data-category="BI">
+                    <div class="project-img">
+                        <img src="images/BI project.png" alt="BI Project">
+                        <div class="project-links">
+                            <a href="https://docs.google.com/document/d/1w6zgl5zwLXZFI_3j7LI1vEBQ5VOY3cac/edit?usp=sharing&ouid=114073361788571405118&rtpof=true&sd=true" target="_blank"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Bic-share Analysis Project</h3>
+                        <p>This project addresses the problem of converting occasional users into annual subscribers in a bicycle sharing system.</p>
+                        <div class="project-tags">
+                            <span>PowerBI</span>
+                            <span>Word</span>
+                        </div>
                     </div>
                 </div>
-                <div class="project-info">
-                    <h3>Olympic Games Paris 2024 - Streamlit App</h3>
-                    <p>This project is designed to bring the excitement, history, and data of the Olympic Games right to your screen.</p>
-                    <div class="project-tags">
-                        <span>React Native</span>
-                        <span>Firebase</span>
-                        <span>Redux</span>
+                
+                <!-- Project Card 2 - Transfer Rumour Analysis -->
+                <div class="project-item" data-category="BI">
+                    <div class="project-img">
+                        <img src="images/project architecture.png" alt="Transfer Rumour Analysis">
+                        <div class="project-links">
+                            <a href="https://github.com/Guinga6/Transfer-Rumours-Analysis" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Analysis of Transfer Rumour and Players Performance</h3>
+                        <p>A comprehensive ETL data pipeline project for analyzing transfer rumours and player performances using web scraping, Apache Airflow, Docker, MongoDB Atlas, and Power BI for predictive modeling.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Apache Airflow</span>
+                            <span>Docker</span>
+                            <span>MongoDB</span>
+                            <span>Power BI</span>
+                            <span>Web Scraping</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Project Card 3 -->
-            <div class="project-item" data-category="nlp">
-                <div class="project-img">
-                    <img src="images/chic.png" alt="nlp">
-                    <div class="project-links">
-                        <a href="https://github.com/TeamXGroup/MoroccoAI-Hackathon" target="_blank"><i class="fab fa-github"></i></a>
+                
+                <!-- Project Card 3 -->
+                <div class="project-item" data-category="web">
+                    <div class="project-img">
+                        <img src="images/olympic_img.png" alt="">
+                        <div class="project-links">
+                            <a href="https://olympic-games-paris-2024.streamlit.app/" target="_blank"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/Guinga6/Olympic-Games-Paris-2024" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Olympic Games Paris 2024 - Streamlit App</h3>
+                        <p>This project is designed to bring the excitement, history, and data of the Olympic Games right to your screen.</p>
+                        <div class="project-tags">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                            <span>Redux</span>
+                        </div>
                     </div>
                 </div>
-                <div class="project-info">
-                    <h3>Chic-illo</h3>
-                    <p>Chic-illo is an AI assistant that specializes in DIY and recycling projects, it helps users transform recyclable materials into new ones.   </p>
-                    <div class="project-tags">
-                        <span>LLMs</span>
-                        <span>Hugginface</span>
-                        <span>Streamlit</span>
-                        <span>Pitching</span>
+                
+                <!-- Project Card 3 -->
+                <div class="project-item" data-category="nlp">
+                    <div class="project-img">
+                        <img src="images/chic.png" alt="nlp">
+                        <div class="project-links">
+                            <a href="https://github.com/TeamXGroup/MoroccoAI-Hackathon" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Chic-illo</h3>
+                        <p>Chic-illo is an AI assistant that specializes in DIY and recycling projects, it helps users transform recyclable materials into new ones.   </p>
+                        <div class="project-tags">
+                            <span>LLMs</span>
+                            <span>Hugginface</span>
+                            <span>Streamlit</span>
+                            <span>Pitching</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Project Card 4 -->
-            <div class="project-item" data-category="web">
-                <div class="project-img">
-                    <img src="images/portfolio.png" alt="Portfolio Website">
-                    <div class="project-links">
-                        <a href="https://guinga6.github.io/aliguinga/" target="_blank"><i class="fas fa-link"></i></a>
-                        <a href="https://github.com/Guinga6/aliguinga" target="_blank"><i class="fab fa-github"></i></a>
+                
+                <!-- Project Card 4 -->
+                <div class="project-item" data-category="web">
+                    <div class="project-img">
+                        <img src="images/portfolio.png" alt="Portfolio Website">
+                        <div class="project-links">
+                            <a href="https://guinga6.github.io/aliguinga/" target="_blank"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/Guinga6/aliguinga" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Portfolio Website</h3>
+                        <p>A responsive portfolio website built with modern web technologies, featuring smooth animations and optimized performance.</p>
+                        <div class="project-tags">
+                            <span>AI tools</span>
+                            <span>github</span>
+                            <span>Html</span>
+                            <span>Css</span>
+                        </div>
                     </div>
                 </div>
-                <div class="project-info">
-                    <h3>Portfolio Website</h3>
-                    <p>A responsive portfolio website built with modern web technologies, featuring smooth animations and optimized performance.</p>
-                    <div class="project-tags">
-                        <span>AI tools</span>
-                        <span>github</span>
-                        <span>Html</span>
-                        <span>Css</span>
+                <div class="project-item" data-category="DL">
+                    <div class="project-img">
+                        <img src="images/objectdetection.jpg" alt="">
+                        <div class="project-links">
+                            <a href="https://github.com/TeamXGroup/cars-logos-plates-detection" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="project-item" data-category="DL">
-                <div class="project-img">
-                    <img src="images/objectdetection.jpg" alt="">
-                    <div class="project-links">
-                        <a href="https://github.com/TeamXGroup/cars-logos-plates-detection" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>Vehicle Logo & License Plate Detection</h3>
-                    <p>This project aims to simplify the task of recognizing vehicle logos and Moroccan license plates using cutting-edge AI technology</p>
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>Streamlit</span>
-                        <span>Yolov8</span>
-                        <span>OpenCV</span>
+                    <div class="project-info">
+                        <h3>Vehicle Logo & License Plate Detection</h3>
+                        <p>This project aims to simplify the task of recognizing vehicle logos and Moroccan license plates using cutting-edge AI technology</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Streamlit</span>
+                            <span>Yolov8</span>
+                            <span>OpenCV</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Certificates Section -->
-<!-- Certificates Section -->
-<section id="certificates" class="certificates">
-    <div class="container">
-        <div class="section-header">
-            <h2>Certificates</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="certificates-grid">
-            <div class="certificate-item">
-                <div class="certificate-icon">
-                    <img src="images/c1.webp" alt="AI Agent Certification">
-                </div>
-                <div class="certificate-content">
-                    <h3>Fundamentals of Agents</h3>
-                    <h4>HuggingFace</h4>
-                    <p class="certificate-date">Mars 2025</p>
-                    <p></p>
-                    <a href="https://cdn-lfs-us-1.hf.co/repos/f2/34/f2344151f60f6027c436821dc61cf3f27a46435de57df8df50ad02b5acca7c07/407cd89781664fa788775f90ccc22a0e1110a682d73e31a244b21b1db6b74cb3?response-content-disposition=inline%3B+filename*%3DUTF-8%27%272025-03-13.png%3B+filename%3D%222025-03-13.png%22%3B&response-content-type=image%2Fpng&Expires=1743992763&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0Mzk5Mjc2M319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmhmLmNvL3JlcG9zL2YyLzM0L2YyMzQ0MTUxZjYwZjYwMjdjNDM2ODIxZGM2MWNmM2YyN2E0NjQzNWRlNTdkZjhkZjUwYWQwMmI1YWNjYTdjMDcvNDA3Y2Q4OTc4MTY2NGZhNzg4Nzc1ZjkwY2NjMjJhMGUxMTEwYTY4MmQ3M2UzMWEyNDRiMjFiMWRiNmI3NGNiMz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSomcmVzcG9uc2UtY29udGVudC10eXBlPSoifV19&Signature=Thyrqvj0aEFbPqZ74OL0uWKXYrqw7UD2osGECSGPolrrAPWMTLslL7A4sGDkX211fmZz5HXuvJAmNY4GYfDUkTuQAFxXfhc9jvlCPd66mifdwW2SyIOQ%7Er-l9tnHIuDtbgFv6v3qEBEuJCbBtrDE3zNBNjJDGXy8L4AxINA9dq6C6LNJPigjzwvLWesjWDvAGXTRgXPVZQjJpWSzPohfE4YP6HfuoPU4LRaIdtZ7lB%7EXGuMFI-aUCcWob21nVKcO8UOrumTKZv1JuX-9lmcSsNgbtHBL1E7WUXxmox8X2-Wg1hP5E%7Ecdsq-5rFPy9HYDZqh1abGnW7ouRAsgjHwF3g__&Key-Pair-Id=K24J24Z295AEI9" class="certificate-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
-                </div>
-            </div>
-            <div class="certificate-item">
-                <div class="certificate-icon">
-                    <img src="images/c2.png" alt="Data Science Specialization">
-                </div>
-                <div class="certificate-content">
-                    <h3>Understanding Cloud Computing</h3>
-                    <h4>DataCamp</h4>
-                    <p class="certificate-date">Mars 2025</p>
-                    <p></p>
-                    <a href="#" class="certificate-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
-                </div>
-            </div>
-            <div class="certificate-item">
-                <div class="certificate-icon">
-                    <img src="images/c3.png" alt="Project Management Professional (PMP)">
-                </div>
-                <div class="certificate-content">
-                    <h3>Hackathon Participation Certificate</h3>
-                    <h4>ENSA Tanger, Morocco</h4>
-                    <p class="certificate-date">March 2022</p>
-                    <p>Recognizes participation in a hackathon, demonstrating skills in project management methodologies, tools, and best practices.</p>
-                    <a href="#" class="certificate-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Volunteer Section -->
-    <section id="volunteer" class="volunteer">
+    <section id="certificates" class="certificates">
         <div class="container">
             <div class="section-header">
-                <h2>Volunteer Experience</h2>
+                <h2>Certificates</h2>
                 <div class="underline"></div>
             </div>
-            <div class="volunteer-grid">
-                <div class="volunteer-item">
-                    <div class="volunteer-icon">
-                        <i class="fas fa-hands-helping"></i>
+            <div class="certificates-grid">
+                <div class="certificate-item">
+                    <div class="certificate-icon">
+                        <img src="images/c1.webp" alt="AI Agent Certification">
                     </div>
-                    <div class="volunteer-content">
-                        <h3>Vice presedent </h3>
-                        <h4>Club Al-Maarifa, Tetouan Compus</h4>
-                        <p class="volunteer-date">Dec 2024 - Present</p>
-                        <p>Volunteered as a Vice President to help the club succeed in organizing events.</p>
-                    </div>
-                </div>
-                <div class="volunteer-item">
-                    <div class="volunteer-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="volunteer-content">
-                        <h3>Arabic Teacher</h3>
-                        <h4>Al-Amal Associattion, Tetouan</h4>
-                        <p class="volunteer-date">Dec 2024 - Present</p>
-                        <p>Help primary school students (12 years old) in a specific situation (orphaned children) reinforce their Arabic school courses.</p>
+                    <div class="certificate-content">
+                        <h3>Fundamentals of Agents</h3>
+                        <h4>HuggingFace</h4>
+                        <p class="certificate-date">Mars 2025</p>
+                        <p></p>
+                        <a href="https://cdn-lfs-us-1.hf.co/repos/f2/34/f2344151f60f6027c436821dc61cf3f27a46435de57df8df50ad02b5acca7c07/407cd89781664fa788775f90ccc22a0e1110a682d73e31a244b21b1db6b74cb3?response-content-disposition=inline%3B+filename*%3DUTF-8%27%272025-03-13.png%3B+filename%3D%222025-03-13.png%22%3B&response-content-type=image%2Fpng&Expires=1743992763&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0Mzk5Mjc2M319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmhmLmNvL3JlcG9zL2YyLzM0L2YyMzQ0MTUxZjYwZjYwMjdjNDM2ODIxZGM2MWNmM2YyN2E0NjQzNWRlNTdkZjhkZjUwYWQwMmI5YWNjYTdjMDcvNDA3Y2Q4OTc4MTY2NGZhNzg4Nzc1ZjkwY2NjMjJhMGUxMTEwYTY4MmQ3M2UzMWEyNDRiMjFiMWRiNmI3NGNiMz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSomcmVzcG9uc2UtY29udGVudC10eXBlPSoifV19&Signature=Thyrqvj0aEFbPqZ74OL0uWKXYrqw7UD2osGECSGPolrrAPWMTLslL7A4sGDkX211fmZz5HXuvJAmNY4GYfDUkTuQAFxXfhc9jvlCPd66mifdwW2SyIOQ%7Er-l9tnHIuDtbgFv6v3qEBEuJCbBtrDE3zNBNjJDGXy8L4AxINA9dq6C6LNJPigjzwvLWesjWDvAGXTRgXPVZQjJpWSzPohfE4YP6HfuoPU4LRaIdtZ7lB%7EXGuMFI-aUCcWob21nVKcO8UOrumTKZv1JuX-9lmcSsNgbtHBL1E7WUXxmox8X2-Wg1hP5E%7Ecdsq-5rFPy9HYDZqh1abGnW7ouRAsgjHwF3g__&Key-Pair-Id=K24J24Z295AEI9" class="certificate-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
                     </div>
                 </div>
+                <div class="certificate-item">
+                    <div class="certificate-icon">
+                        <img src="images/c2.png" alt="Data Science Specialization">
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Understanding Cloud Computing</h3>
+                        <h4>DataCamp</h4>
+                        <p class="certificate-date">Mars 2025</p>
+                        <p></p>
+                        <a href="#" class="certificate-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+                    </div>
+                </div>
+                <div class="certificate-item">
+                    <div class="certificate-icon">
+                        <img src="images/c3.png" alt="Project Management Professional (PMP)">
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Hackathon Participation Certificate</h3>
+                        <h4>ENSA Tanger, Morocco</h4>
+                        <p class="certificate-date">March 2022</p>
+                        <p>Recognizes participation in a hackathon, demonstrating skills in project management methodologies, tools, and best practices.</p>
+                        <a href="#" class="certificate-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- Resume Section -->
-    <section id="resume" class="resume">
-        <div class="container">
-            <div class="section-header">
-                <h2>Resume</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="resume-content">
-                <p>Download my detailed resume to learn more about my experience, skills, and qualifications.</p>
-                <a href="files/Ali guinga.pdf" class="btn primary-btn" download>
-                    <i class="fas fa-download"></i> Download Resume
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contact Me</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+        <!-- Volunteer Section -->
+        <section id="volunteer" class="volunteer">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Volunteer Experience</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="volunteer-grid">
+                    <div class="volunteer-item">
+                        <div class="volunteer-icon">
+                            <i class="fas fa-hands-helping"></i>
                         </div>
-                        <div class="contact-text">
-                            <h3>Location</h3>
-                            <p>Tetouan, Morocco</p>
+                        <div class="volunteer-content">
+                            <h3>Vice presedent </h3>
+                            <h4>Club Al-Maarifa, Tetouan Compus</h4>
+                            <p class="volunteer-date">Dec 2024 - Present</p>
+                            <p>Volunteered as a Vice President to help the club succeed in organizing events.</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                    <div class="volunteer-item">
+                        <div class="volunteer-icon">
+                            <i class="fas fa-laptop-code"></i>
                         </div>
-                        <div class="contact-text">
-                            <h3>Email</h3>
-                            <p>aliguinga2020@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Phone</h3>
-                            <p>+212706783726</p>
+                        <div class="volunteer-content">
+                            <h3>Arabic Teacher</h3>
+                            <h4>Al-Amal Associattion, Tetouan</h4>
+                            <p class="volunteer-date">Dec 2024 - Present</p>
+                            <p>Help primary school students (12 years old) in a specific situation (orphaned children) reinforce their Arabic school courses.</p>
                         </div>
                     </div>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/ali-guinga-f-ps-43770820b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Guinga6" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.kaggle.com/aliguinga5" target="_blank"><i class="fab fa-kaggle"></i></a>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm" action="https://formsubmit.co/aliguinga2020@gmail.com" method="POST">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn primary-btn">Send Message</button>
-                        <div id="form-message"></div>
-                    </form>
+            </div>
+        </section>
+
+
+        <!-- Resume Section -->
+        <section id="resume" class="resume">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Resume</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="resume-content">
+                    <p>Download my detailed resume to learn more about my experience, skills, and qualifications.</p>
+                    <a href="files/Ali guinga.pdf" class="btn primary-btn" download>
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Ali Guinga. All Rights Reserved.</p>
-                <div class="back-to-top">
-                    <a href="#home"><i class="fas fa-arrow-up"></i></a>
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Contact Me</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Location</h3>
+                                <p>Tetouan, Morocco</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>aliguinga2020@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Phone</h3>
+                                <p>+212706783726</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/ali-guinga-f-ps-43770820b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Guinga6" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.kaggle.com/aliguinga5" target="_blank"><i class="fab fa-kaggle"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm" action="https://formsubmit.co/aliguinga2020@gmail.com" method="POST">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn primary-btn">Send Message</button>
+                            <div id="form-message"></div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </section>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <p>&copy; 2025 Ali Guinga. All Rights Reserved.</p>
+                    <div class="back-to-top">
+                        <a href="#home"><i class="fas fa-arrow-up"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-</body>
-</html>
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <script>
+            // YouTube Banner functionality
+            function closeBanner() {
+                const banner = document.getElementById('youtube-banner');
+                const body = document.body;
+                banner.style.transform = 'translateY(-100%)';
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                    body.classList.remove('banner-visible');
+                }, 300);
+            }
+
+            // Auto-hide banner after 10 seconds (optional)
+            setTimeout(() => {
+                const banner = document.getElementById('youtube-banner');
+                if (banner && banner.style.display !== 'none') {
+                    closeBanner();
+                }
+            }, 10000);
+
+            // Skill animation on scroll
+            function animateSkills() {
+                const skillBars = document.querySelectorAll('.skill-level');
+                skillBars.forEach(bar => {
+                    const rect = bar.getBoundingClientRect();
+                    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+                    
+                    if (isVisible) {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    }
+                });
+            }
+
+            // Trigger skill animation on scroll
+            window.addEventListener('scroll', animateSkills);
+            
+            // Trigger on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(animateSkills, 500);
+            });
+        </script>
+
+    </body>
+    </html>
