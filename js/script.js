@@ -571,14 +571,31 @@ function initPFAPopup() {
     
     if (!popup) return;
 
-    // Show popup after 3 seconds
+    // Show popup after 2 seconds (faster)
     setTimeout(() => {
         popup.classList.add('show');
-    }, 3000);
+    }, 2000);
+
+    // Auto-hide after 8 seconds if not closed manually
+    setTimeout(() => {
+        if (popup.classList.contains('show')) {
+            closePopup();
+        }
+    }, 10000);
 
     // Close popup functionality
     function closePopup() {
         popup.classList.remove('show');
+        // Show again after 30 seconds
+        setTimeout(() => {
+            popup.classList.add('show');
+            // Auto-hide again
+            setTimeout(() => {
+                if (popup.classList.contains('show')) {
+                    closePopup();
+                }
+            }, 8000);
+        }, 30000);
     }
 
     if (closeBtn) {
