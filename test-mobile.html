@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu Test</title>
+    <link rel="stylesheet" href="css/style.css?v=2.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 100px;
+        }
+        .test-content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Ali</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="certificates.html">Certificates</a></li>
+                    <li><a href="volunteer.html">Volunteer</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="test-content">
+        <h1>🧪 Mobile Menu Test Page</h1>
+        <p>This is a test page to verify that the mobile menu works correctly on all devices.</p>
+        
+        <div class="test-result info">
+            <h3>📋 Test Instructions:</h3>
+            <ol>
+                <li><strong>Desktop:</strong> Resize your browser to mobile width (&lt;768px) or use developer tools</li>
+                <li><strong>Mobile:</strong> View this page directly on your mobile device</li>
+                <li><strong>Test:</strong> Look for the hamburger menu (☰) in the top right</li>
+                <li><strong>Click/Tap:</strong> The hamburger icon to open the menu</li>
+                <li><strong>Navigate:</strong> Click any menu item to test navigation</li>
+            </ol>
+        </div>
+
+        <div id="test-results"></div>
+
+        <script>
+            // Test results display
+            function addTestResult(message, type = 'info') {
+                const resultsDiv = document.getElementById('test-results');
+                const div = document.createElement('div');
+                div.className = `test-result ${type}`;
+                div.innerHTML = message;
+                resultsDiv.appendChild(div);
+            }
+
+            // Check if elements exist
+            setTimeout(() => {
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('nav ul');
+                const navLinks = document.querySelectorAll('nav ul li a');
+
+                if (hamburger) {
+                    addTestResult('✅ Hamburger menu element found', 'success');
+                } else {
+                    addTestResult('❌ Hamburger menu element NOT found', 'error');
+                }
+
+                if (navMenu) {
+                    addTestResult('✅ Navigation menu found', 'success');
+                } else {
+                    addTestResult('❌ Navigation menu NOT found', 'error');
+                }
+
+                addTestResult(`📊 Found ${navLinks.length} navigation links`, navLinks.length === 7 ? 'success' : 'error');
+
+                // Check mobile screen size
+                if (window.innerWidth <= 768) {
+                    addTestResult('📱 Mobile screen size detected', 'success');
+                    if (hamburger) {
+                        const style = window.getComputedStyle(hamburger);
+                        if (style.display === 'flex') {
+                            addTestResult('✅ Hamburger menu is visible on mobile', 'success');
+                        } else {
+                            addTestResult('❌ Hamburger menu is NOT visible on mobile', 'error');
+                        }
+                    }
+                } else {
+                    addTestResult('🖥️ Desktop screen size - resize to test mobile', 'info');
+                }
+
+                // Add click handler test
+                if (hamburger) {
+                    hamburger.addEventListener('click', function() {
+                        addTestResult('🔥 Hamburger clicked! Menu should open/close', 'success');
+                    });
+                }
+
+            }, 500);
+        </script>
+    </div>
+
+    <script defer src="js/script.js"></script>
+</body>
+</html>
