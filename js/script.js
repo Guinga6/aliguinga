@@ -376,6 +376,78 @@ function initActiveNav() {
     });
 }
 
+// Mobile menu toggle functionality
+function initMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav ul');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    const header = document.querySelector('header');
+    
+    if (hamburger && navMenu) {
+        // Update mobile menu position based on header height
+        function updateMenuPosition() {
+            if (header) {
+                const headerHeight = header.offsetHeight;
+                document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+            }
+        }
+        
+        // Initial position update
+        updateMenuPosition();
+        window.addEventListener('resize', updateMenuPosition);
+        
+        // Toggle mobile menu
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Hamburger clicked'); // Debug log
+            
+            // Toggle hamburger animation
+            hamburger.classList.toggle('active');
+            
+            // Toggle menu visibility
+            navMenu.classList.toggle('active');
+            
+            console.log('Menu active:', navMenu.classList.contains('active')); // Debug log
+            
+            // Prevent body scroll when menu is open
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu when clicking on links
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu on window resize if screen becomes larger
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+}
+
 // Back to top button functionality
 function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
@@ -398,18 +470,6 @@ function initBackToTop() {
     }
 }
 
-// Mobile menu toggle
-function initMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav ul');
-    
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-    }
-}
 
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
