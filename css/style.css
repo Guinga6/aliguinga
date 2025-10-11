@@ -2596,96 +2596,59 @@ footer {
         align-items: flex-start;
     }
     
-    /* ===== ENHANCED MOBILE NAVIGATION MENU ===== */
+    /* ===== SIMPLE MOBILE NAVIGATION ===== */
     nav ul {
         position: fixed;
-        top: var(--header-height, 70px);
+        top: 70px;
         left: 0;
-        right: 0;
-        width: 100vw;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        width: 100%;
+        background: white;
         flex-direction: column;
-        padding: var(--spacing-xl) var(--spacing-lg);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        border-bottom: 1px solid var(--gray-200);
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
         
-        /* Hidden state */
-        transform: translateY(-110%);
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        
-        /* Smooth transitions */
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        
-        /* High z-index to appear above everything */
-        z-index: 10000;
-        
-        /* Ensure menu can scroll if content is long */
-        max-height: calc(100vh - var(--header-height, 70px));
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        
-        /* Ensure menu covers full width */
-        margin: 0;
-        border-radius: 0;
+        /* Hidden by default */
+        display: none;
     }
     
-    /* Active state - menu is visible */
+    /* Show when active */
     nav ul.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
+        display: flex;
     }
     
-    /* Enhanced mobile menu items */
+    /* Simple mobile menu items */
     nav ul li {
         width: 100%;
-        margin: 0;
-        border-bottom: 1px solid var(--gray-100);
-    }
-    
-    nav ul li:last-child {
-        border-bottom: none;
+        margin: 8px 0;
     }
     
     nav ul li a {
-        display: flex;
-        align-items: center;
+        display: block;
         width: 100%;
-        padding: var(--spacing-lg) var(--spacing-md);
-        font-size: 1.1rem;
+        padding: 15px 10px;
+        font-size: 18px;
         font-weight: 500;
         color: var(--dark-color);
         text-decoration: none;
-        border-radius: var(--radius-md);
-        margin: var(--spacing-xs) 0;
-        transition: all var(--transition-normal);
+        border-radius: 8px;
+        transition: background-color 0.2s;
+        
+        /* Ensure links are clickable */
+        pointer-events: auto;
+        cursor: pointer;
         
         /* Better touch targets */
         min-height: 48px;
-        touch-action: manipulation;
-        
-        /* Prevent text selection on touch */
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+        display: flex;
+        align-items: center;
     }
     
     nav ul li a:hover,
-    nav ul li a:focus,
+    nav ul li a:active,
     nav ul li a.active {
         background: var(--primary-color);
-        color: var(--white);
-        transform: translateX(8px);
-    }
-    
-    nav ul li a::after {
-        display: none; /* Remove underline effect for mobile */
+        color: white;
     }
     
     /* Mobile menu overlay */
@@ -2703,35 +2666,6 @@ footer {
     
 .hamburger {
     display: flex;
-    order: 1; /* Ensure hamburger appears on the right */
-}
-
-/* Body state when mobile menu is open */
-body.menu-open {
-    overflow: hidden !important;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
-
-/* Mobile menu backdrop overlay */
-body.menu-open::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 9999;
-    opacity: 0;
-    animation: fadeIn 0.3s ease forwards;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
 }
     
     .hero-content h1 {

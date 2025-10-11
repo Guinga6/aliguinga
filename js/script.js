@@ -376,139 +376,69 @@ function initActiveNav() {
     });
 }
 
-// ===== BULLETPROOF MOBILE MENU FUNCTIONALITY =====
+// ===== SUPER SIMPLE MOBILE MENU =====
 function initMobileMenu() {
-    // Get all required elements with error checking
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('nav ul');
-    const navLinks = document.querySelectorAll('nav ul li a');
-    const body = document.body;
-    const header = document.querySelector('header');
-    
-    // Debug logging
-    console.log('🍔 Mobile Menu Debug:');
-    console.log('Hamburger found:', !!hamburger);
-    console.log('Nav menu found:', !!navMenu);
-    console.log('Nav links found:', navLinks.length);
     
     if (!hamburger || !navMenu) {
-        console.error('❌ Mobile menu elements not found!');
+        console.log('❌ Mobile menu elements not found');
         return;
     }
     
-    // State management
-    let isMenuOpen = false;
+    console.log('✅ Mobile menu elements found, setting up...');
     
-    // Update header height for mobile menu positioning
-    function updateHeaderHeight() {
-        if (header) {
-            const headerHeight = header.offsetHeight;
-            document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-            console.log('📏 Header height updated:', headerHeight + 'px');
-        }
-    }
-    
-    // Toggle mobile menu function
-    function toggleMobileMenu(event) {
-        if (event) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+    // Simple toggle function
+    function toggleMenu() {
+        const isOpen = navMenu.classList.contains('active');
         
-        isMenuOpen = !isMenuOpen;
-        
-        console.log('🔄 Toggling menu. Open:', isMenuOpen);
-        
-        if (isMenuOpen) {
-            // Open menu
-            hamburger.classList.add('active');
-            navMenu.classList.add('active');
-            body.classList.add('menu-open');
-            body.style.overflow = 'hidden';
-            
-            // Add ARIA attributes for accessibility
-            hamburger.setAttribute('aria-expanded', 'true');
-            navMenu.setAttribute('aria-hidden', 'false');
-            
-            console.log('✅ Menu opened');
-        } else {
+        if (isOpen) {
             // Close menu
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
-            body.classList.remove('menu-open');
-            body.style.overflow = '';
-            
-            // Update ARIA attributes
-            hamburger.setAttribute('aria-expanded', 'false');
-            navMenu.setAttribute('aria-hidden', 'true');
-            
-            console.log('✅ Menu closed');
+            document.body.style.overflow = '';
+            console.log('📱 Menu closed');
+        } else {
+            // Open menu
+            hamburger.classList.add('active');
+            navMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            console.log('📱 Menu opened');
         }
     }
     
-    // Close menu function
-    function closeMobileMenu() {
-        if (isMenuOpen) {
-            toggleMobileMenu();
-        }
-    }
-    
-    // Event listeners
-    
-    // 1. Hamburger click
+    // Hamburger click event
     hamburger.addEventListener('click', function(e) {
-        console.log('🖱️ Hamburger clicked');
-        toggleMobileMenu(e);
+        e.preventDefault();
+        console.log('🍔 Hamburger clicked!');
+        toggleMenu();
     });
     
-    // 2. Navigation link clicks
-    navLinks.forEach((link, index) => {
-        link.addEventListener('click', function() {
-            console.log('🔗 Nav link clicked:', link.textContent);
-            closeMobileMenu();
+    // Close menu when clicking nav links (but allow navigation)
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            console.log('🔗 Nav link clicked:', this.href);
+            // Don't prevent default - allow navigation
+            // Just close the menu after a short delay
+            setTimeout(() => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }, 150);
         });
     });
     
-    // 3. Click outside to close
-    document.addEventListener('click', function(e) {
-        if (isMenuOpen && 
-            !hamburger.contains(e.target) && 
-            !navMenu.contains(e.target)) {
-            console.log('🖱️ Clicked outside menu');
-            closeMobileMenu();
-        }
-    });
-    
-    // 4. Escape key to close
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && isMenuOpen) {
-            console.log('⌨️ Escape key pressed');
-            closeMobileMenu();
-        }
-    });
-    
-    // 5. Window resize handler
-    let resizeTimeout;
+    // Close menu on window resize if large screen
     window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            updateHeaderHeight();
-            
-            // Close menu on large screens
-            if (window.innerWidth > 768 && isMenuOpen) {
-                console.log('📱 Screen became large, closing menu');
-                closeMobileMenu();
-            }
-        }, 100);
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
     
-    // Initial setup
-    updateHeaderHeight();
-    hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
-    navMenu.setAttribute('aria-hidden', 'true');
-    
-    console.log('✅ Mobile menu initialized successfully!');
+    console.log('✅ Simple mobile menu ready!');
 }
 
 // Back to top button functionality
