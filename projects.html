@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Ali Guinga</title>
+    <link rel="stylesheet" href="css/style.css?v=2.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><a href="index.html">Ali</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="certificates.html">Certificates</a></li>
+                    <li><a href="volunteer.html">Volunteer</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects page-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Projects</h1>
+                <div class="underline"></div>
+                <p class="section-description">Explore my portfolio of data science, AI, and web development projects</p>
+            </div>
+            
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="DL">Deep Learning</button>
+                <button class="filter-btn" data-filter="nlp">Chatbot creating</button>
+                <button class="filter-btn" data-filter="BI">Business Intelligence</button>
+                <button class="filter-btn" data-filter="ai-ml">AI/ML</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project Card 1 - BI Project -->
+                <div class="project-item" data-category="BI">
+                    <div class="project-img">
+                        <img src="images/BI project.png" alt="BI Project">
+                        <div class="project-links">
+                            <a href="https://docs.google.com/document/d/1w6zgl5zwLXZFI_3j7LI1vEBQ5VOY3cac/edit?usp=sharing&ouid=114073361788571405118&rtpof=true&sd=true" target="_blank"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Bike-share Analysis Project</h3>
+                        <p>This project addresses the problem of converting occasional users into annual subscribers in a bicycle sharing system using data analysis and business intelligence techniques.</p>
+                        <div class="project-tags">
+                            <span>Power BI</span>
+                            <span>Data Analysis</span>
+                            <span>Business Intelligence</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 2 - Transfer Rumour Analysis -->
+                <div class="project-item" data-category="BI">
+                    <div class="project-img">
+                        <img src="images/project architecture.png" alt="Transfer Rumour Analysis">
+                        <div class="project-links">
+                            <a href="https://github.com/Guinga6/Transfer-Rumours-Analysis" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Analysis of Transfer Rumour and Players Performance</h3>
+                        <p>A comprehensive ETL data pipeline project for analyzing transfer rumours and player performances using web scraping, Apache Airflow, Docker, MongoDB Atlas, and Power BI for predictive modeling.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Apache Airflow</span>
+                            <span>Docker</span>
+                            <span>MongoDB</span>
+                            <span>Power BI</span>
+                            <span>Web Scraping</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 3 - Olympic Games -->
+                <div class="project-item" data-category="web">
+                    <div class="project-img">
+                        <img src="images/olympic_img.png" alt="Olympic Games Paris 2024">
+                        <div class="project-links">
+                            <a href="https://olympic-games-paris-2024.streamlit.app/" target="_blank"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/Guinga6/Olympic-Games-Paris-2024" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Olympic Games Paris 2024 - Streamlit App</h3>
+                        <p>This project is designed to bring the excitement, history, and data of the Olympic Games right to your screen with interactive visualizations and data analysis.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Streamlit</span>
+                            <span>Data Visualization</span>
+                            <span>Pandas</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 4 - Chic-illo -->
+                <div class="project-item" data-category="nlp">
+                    <div class="project-img">
+                        <img src="images/chic.png" alt="Chic-illo NLP Project">
+                        <div class="project-links">
+                            <a href="https://github.com/TeamXGroup/MoroccoAI-Hackathon" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Chic-illo</h3>
+                        <p>Chic-illo is an AI assistant that specializes in DIY and recycling projects, helping users transform recyclable materials into new ones using natural language processing.</p>
+                        <div class="project-tags">
+                            <span>LLMs</span>
+                            <span>Hugging Face</span>
+                            <span>Streamlit</span>
+                            <span>NLP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 5 - Portfolio Website -->
+                <div class="project-item" data-category="web">
+                    <div class="project-img">
+                        <img src="images/portfolio.png" alt="Portfolio Website">
+                        <div class="project-links">
+                            <a href="https://guinga6.github.io/aliguinga/" target="_blank"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/Guinga6/aliguinga" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Portfolio Website</h3>
+                        <p>A responsive portfolio website built with modern web technologies, featuring smooth animations, optimized performance, and clean design.</p>
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>GitHub Pages</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 6 - Vehicle Detection -->
+                <div class="project-item" data-category="DL">
+                    <div class="project-img">
+                        <img src="images/objectdetection.jpg" alt="Vehicle Logo & License Plate Detection">
+                        <div class="project-links">
+                            <a href="https://github.com/TeamXGroup/cars-logos-plates-detection" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Vehicle Logo & License Plate Detection</h3>
+                        <p>This project aims to simplify the task of recognizing vehicle logos and Moroccan license plates using cutting-edge AI technology and computer vision.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Streamlit</span>
+                            <span>YOLOv8</span>
+                            <span>OpenCV</span>
+                            <span>Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 7 - Laptop Search Engine -->
+                <div class="project-item" data-category="ai-ml">
+                    <div class="project-img">
+                        <img src="images/Page-1.png" alt="Laptop Search Engine">
+                        <div class="project-links">
+                            <a href="https://github.com/Guinga6/laptop-search-engine" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Laptop Search Engine</h3>
+                        <p>Built semantic search engine using Qdrant vector database with embedding models for converting product specifications to vectors. Part of Qdrant "Out of the Bot" hackathon with optimized vector filtering performance.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Qdrant</span>
+                            <span>Jina</span>
+                            <span>Streamlit</span>
+                            <span>Web Scraping</span>
+                            <span>Sentence Transformers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Ali Guinga. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/ali-guinga-f-ps-43770820b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Guinga6" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.kaggle.com/aliguinga5" target="_blank"><i class="fab fa-kaggle"></i></a>
+                    <a href="https://youtube.com/@aliguinga660?si=Szc6zRNXIr3y-0op" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>
+</html>
