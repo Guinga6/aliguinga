@@ -429,6 +429,10 @@ function initMobileMenu() {
                 navMenu.classList.add('active');
                 hamburger.classList.add('active');
                 body.style.overflow = 'hidden';
+                
+                // Reset scroll position to top
+                navMenu.scrollTop = 0;
+                
                 isMenuOpen = true;
                 console.log('🎉 MENU OPENED!');
             } else {
