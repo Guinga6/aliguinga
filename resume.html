@@ -23,14 +23,12 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Me</a></li>
                     <li><a href="education.html">Education</a></li>
                     <li><a href="skills.html">Skills</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="certificates.html">Certificates</a></li>
                     <li><a href="volunteer.html">Volunteer</a></li>
                     <li><a href="resume.html" class="active">Resume</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="hamburger">
                     <span></span>
@@ -44,107 +42,76 @@
     <!-- Resume Section -->
     <section id="resume" class="resume page-section">
         <div class="container">
-            <div class="section-header">
-                <h1>Resume</h1>
-                <div class="underline"></div>
-                <p class="section-description">Download my detailed resume to learn more about my experience, skills, and qualifications</p>
-            </div>
             
             <div class="resume-content">
-                <div class="resume-download">
+                <!-- Resume Header -->
+                <div class="resume-header">
+                    <div class="resume-intro">
+                        <h2>My Resume</h2>
+                        <div class="underline"></div>
+                        <p>Download my comprehensive resume to learn more about my education, experience, skills, and achievements in Data Science and AI.</p>
+                    </div>
+                </div>
+                
+                <!-- Resume Preview Card -->
+                <div class="resume-card">
                     <div class="resume-preview">
-                        <i class="fas fa-file-pdf"></i>
-                        <h3>Ali Guinga Resume</h3>
-                        <p>Comprehensive resume including education, experience, skills, and achievements</p>
+                        <div class="resume-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="resume-info">
+                            <h3>Ali Guinga - Resume</h3>
+                            <p class="resume-subtitle">Data Science & AI Student</p>
+                            <p class="resume-description">Comprehensive overview of my academic background, technical skills, projects, certifications, and professional experience.</p>
+                            
+                            <!-- Resume Stats -->
+                            <div class="resume-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Engineering Student</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-project-diagram"></i>
+                                    <span>8+ Projects</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>7 Certificates</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Multiple Technologies</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
+                    <!-- Download Actions -->
                     <div class="download-actions">
                         <a href="files/Ali guinga.pdf" class="btn primary-btn" download>
-                            <i class="fas fa-download"></i> Download Resume
+                            <i class="fas fa-download"></i> Download PDF
                         </a>
                         <a href="files/Ali guinga.pdf" target="_blank" class="btn secondary-btn">
                             <i class="fas fa-eye"></i> View Online
                         </a>
                     </div>
                 </div>
-
-                <!-- Resume Summary -->
-                <div class="resume-summary">
-                    <h3>Resume Highlights</h3>
-                    <div class="summary-grid">
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h4>Education</h4>
-                                <p>Engineering degree in Data Science, Big Data, and AI from ENSA Tétouan</p>
-                            </div>
+                
+                <!-- Quick Contact -->
+                <div class="resume-contact">
+                    <div class="contact-card">
+                        <h4>Let's Connect</h4>
+                        <p>Interested in my profile? Let's discuss opportunities!</p>
+                        <div class="contact-links">
+                            <a href="mailto:aliguinga2020@gmail.com" class="contact-btn">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email Me</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/ali-guinga-43770820b/" target="_blank" class="contact-btn">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
                         </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h4>Technical Skills</h4>
-                                <p>Python, R, Machine Learning, Data Analysis, AI frameworks, and more</p>
-                            </div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h4>Projects</h4>
-                                <p>Multiple data science and AI projects including semantic search engines and computer vision applications</p>
-                            </div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-certificate"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h4>Certifications</h4>
-                                <p>Professional certifications from HuggingFace, DataCamp, and hackathon participations</p>
-                            </div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-hands-helping"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h4>Volunteer Work</h4>
-                                <p>Active community involvement including teaching and student organization leadership</p>
-                            </div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h4>Languages</h4>
-                                <p>Multilingual: Arabic (Native), English (Proficient), French (Proficient)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact CTA -->
-                <div class="resume-cta">
-                    <h3>Interested in Working Together?</h3>
-                    <p>I'm actively seeking opportunities in Data Science, AI, and Machine Learning. Let's connect and discuss how I can contribute to your team!</p>
-                    <div class="cta-buttons">
-                        <a href="contact.html" class="btn primary-btn">
-                            <i class="fas fa-envelope"></i> Get In Touch
-                        </a>
-                        <a href="projects.html" class="btn secondary-btn">
-                            <i class="fas fa-folder-open"></i> View Projects
-                        </a>
                     </div>
                 </div>
             </div>
@@ -157,7 +124,7 @@
             <div class="footer-content">
                 <p>&copy; 2025 Ali Guinga. All Rights Reserved.</p>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/ali-guinga-f-ps-43770820b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/ali-guinga-43770820b/" target="_blank"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/Guinga6" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://www.kaggle.com/aliguinga5" target="_blank"><i class="fab fa-kaggle"></i></a>
                     <a href="https://youtube.com/@aliguinga660?si=Szc6zRNXIr3y-0op" target="_blank"><i class="fab fa-youtube"></i></a>
